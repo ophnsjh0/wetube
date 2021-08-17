@@ -2,3 +2,8 @@ extends base.pug
 
 block content 
     h2 welcome My home ~ !! 
+    ul 
+        each list in videos
+            li=list
+        else 
+            li Not Found  ~!! 
