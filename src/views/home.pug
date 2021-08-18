@@ -1,9 +1,10 @@
 extends base.pug
+include mixins/video
 
 block content 
     h2 welcome My home ~ !! 
     ul 
-        each list in videos
-            li=list
+        each info in videos
+            +video(info)
         else 
             li Not Found  ~!! 
