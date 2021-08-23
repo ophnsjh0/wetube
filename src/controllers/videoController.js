@@ -12,7 +12,7 @@ let videos = [
         rating : 1,
         comment : 93,
         createdAt : "12 hour ago",
-        views : 200003,
+        views : 1,
         id : 2
     },
     {
