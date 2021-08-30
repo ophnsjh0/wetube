@@ -2,7 +2,6 @@ import Video from "../models/Video";
 
 export const home = async(req, res) => {        
         const videos = await Video.find({});
-        console.log(videos);
         return res.render("home", { pageTitle: "Home", videos }); 
                     
 }
@@ -45,18 +44,18 @@ export const postUpload = async(req, res) => {
     await video.save();
     */
    // Video db저장 create 방식 
+   try {
     await Video.create({
         title: title,
         description: description,
-        creatAt: Date.now(),
         hashtags: hashtags.split(',').map(word => `#${word}`),
-        meta: {
-            views: 0,
-            rating: 0,
-        },
     });
     return res.redirect(`/`);
-}
+   } catch(error) {
+        return res.render("upload", {pageTitle: "UpLoad Video", errorMessage: error.message,});   
+   };
+   
+};
 
 
 
