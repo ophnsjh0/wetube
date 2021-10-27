@@ -6,11 +6,16 @@ html(lang="ko")
     body
         header
             h1=pageTitle
-        ul  
-            li
-                a(href=`/videos/upload`) upload 
-            li
-                a(href=`/`) Home
+            nav     
+                ul  
+                    li
+                        a(href=`/videos/upload`) upload 
+                    li
+                        a(href=`/`) Home
+                    li
+                        a(href=`/search`) Search
+                    li
+                        a(href=`/join`) Join
                      
         main  
             block content
