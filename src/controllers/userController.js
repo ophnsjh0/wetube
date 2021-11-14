@@ -1,5 +1,8 @@
 import User from "../models/User";
 import bcrypt from "bcrypt";
+import fetch from "node-fetch";
+
+
 
 export const getJoin = (req, res) => res.render("join", { pageTitle : "Join" });
 export const postJoin = async(req, res) => {
@@ -60,6 +63,62 @@ export const postLogin = async (req, res) => {
     req.session.loggedIn = true;
     req.session.user = user;
     return res.redirect(`/`);
+};
+
+// "https://github.com/login/oauth/authorize?client_id=6d9a9f826a4b01be8ab6&allow_signup=false&scope=read:user user:email"
+export const startGihubLogin = (req, res) => {
+    const baseUrl = "https://github.com/login/oauth/authorize"
+    const config = {
+        client_id: process.env.GH_CLIENT,
+        allow_signup: "false",
+        scope: "read:user user:email"
+    };
+    const params = new URLSearchParams(config).toString();
+    const finalUrl = `${baseUrl}?${params}`;
+    return res.redirect(finalUrl);
+}
+
+export const finishGihubLogin = async(req, res) => {
+    const baseUrl = "https://github.com/login/oauth/access_token"
+    const config ={
+        client_id: process.env.GH_CLIENT,
+        client_secret: process.env.GH_SECRET,
+        code: req.query.code,   
+    };
+    const params = new URLSearchParams(config).toString();
+    const finalUrl = `${baseUrl}?${params}`;
+    const tokenRequest = await (
+        await fetch(finalUrl, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+            },
+        })
+    ).json();
+    // console.log(tokenRequest);
+    if ("access_token" in tokenRequest) {
+        //access_API 
+        const { access_token } = tokenRequest;
+        const apiUrl = "https://api.github.com";
+        const userData = await (
+            await fetch(`${apiUrl}/user`, {
+                headers: {
+                    Authorization: `token ${access_token}`
+                }
+            })
+        ).json();
+        console.log(userData);
+        const emailData = await (
+            await fetch(`${apiUrl}/user/emails`, {
+                headers: {
+                    Authorization: `token ${access_token}`
+                }
+            })
+        ).json();
+        console.log(emailData);
+    } else {
+        return res.redirect("/login");
+    }
 };
 
 

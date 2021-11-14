@@ -1,6 +1,6 @@
 // const express = require("express");
 // const app = express();
-
+// console.log(process.env.COOKIE_SECRET, process.env.DB_URL);
 import express from "express";
 import morgan from "morgan"
 import rootRouter from "./routers/rootRouter";
@@ -20,10 +20,14 @@ app.set("views", process.cwd() + '/src/views')
 app.use(logger);
 app.use(express.urlencoded({ extended: true })); //URL 인코더 미들웨어 
 app.use(session({
-    secret: "Hello!",
-    resave: true,
-    saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: "mongodb://127.0.0.1:27017/wetube" }),
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    // cookie: {
+    //     maxAge: 20000,
+    // },
+    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
+    
     })
 );
 // cookie 정보
