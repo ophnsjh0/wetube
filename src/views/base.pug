@@ -12,16 +12,18 @@ html(lang="ko")
                         a(href=`/`) Home
                     if loggedIn
                         li
-                            a(href=`/logout`) Logout
+                            a(href=`/videos/upload`) upload  
+                        li 
+                            a(href=`/users/edit`) Edit
+                        li
+                            a(href=`/users/logout`) Logout
                         li
                             a(href=`/join`) #{loggedInUser.name}의 Profile
                     else
                         li
                             a(href=`/login`) Login
                         li
-                            a(href=`/join`) Join
-                    li
-                        a(href=`/videos/upload`) upload                     
+                            a(href=`/join`) Join                                      
                     li
                         a(href=`/search`) Search
                     

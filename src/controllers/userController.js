@@ -34,6 +34,7 @@ export const postJoin = async(req, res) => {
             username,
             password,
             name,
+            socialOnly: false,
             location,
         });
         return res.redirect(`/login`);
@@ -46,7 +47,7 @@ export const postJoin = async(req, res) => {
 export const getLogin = (req, res) => res.render("login", {pageTitle : "Login"});
 export const postLogin = async (req, res) => {
     const { username, password } = req.body
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username, socialOnly: false });
     const pageTitle = "Login";
     // const exists = await User.exists({username});
     // check if account exists
@@ -95,7 +96,7 @@ export const finishGihubLogin = async(req, res) => {
             },
         })
     ).json();
-    // console.log(tokenRequest);
+    console.log(tokenRequest);
     if ("access_token" in tokenRequest) {
         //access_API 
         const { access_token } = tokenRequest;
@@ -107,7 +108,7 @@ export const finishGihubLogin = async(req, res) => {
                 }
             })
         ).json();
-        console.log(userData);
+        // console.log(userData);
         const emailData = await (
             await fetch(`${apiUrl}/user/emails`, {
                 headers: {
@@ -116,13 +117,71 @@ export const finishGihubLogin = async(req, res) => {
             })
         ).json();
         console.log(emailData);
+        const emailObj = emailData.find(
+            (email) => email.primary === true && email.verified === true
+        );
+        if (!emailObj){
+            return res.redirect("/login");
+        };
+    // Social Login
+    //     const existingUser = await User.findOne({ email: emailObj.email });
+    //     if(existingUser){
+    //         req.session.loggedIn = true;
+    //         req.session.user = existingUser;
+    //         return res.redirect(`/`);
+    //     } else {
+    //         const user = await User.create({
+    //             email: emailObj.email,
+    //             username: userData.login,
+    //             password: "",
+    //             name: userData.name,
+    //             socialOnly: true,
+    //             location: userData.location,
+    //         });
+    //         req.session.loggedIn = true;
+    //         req.session.user = user;
+    //         return res.redirect(`/`);
+    //     }
+    // } else {
+    //     return res.redirect("/login");
+    // }
+       let user = await User.findOne({ email: emailObj.email});
+       if(!user){
+        user = await User.create({
+            avatarUrl: userData.avatar_url,
+            email: emailObj.email,
+            username: userData.login,
+            password: "",
+            name: userData.name,
+            socialOnly: true,
+            location: userData.location,
+        });
+       } 
+       req.session.loggedIn = true;
+       req.session.user = user;
+       return res.redirect(`/`); 
     } else {
         return res.redirect("/login");
     }
 };
 
+export const logout = (req, res) => {
+    req.session.destroy();
+    return res.redirect("/");
+};
 
-export const edit = (req, res) => res.send("Edit User");
-export const remove = (req, res) => res.send("Remove User");
+export const getEdit = (req, res) => {
+    return res.render("edit-profile", {pageTitle : "Edit-Profile"});
+}
+export const postEdit = async (req, res) => {
+    const { session: { user: {_id} }, body: { email, username, name, location } } = req;
+    await User.findByIdAndUpdate(_id, {
+        email,
+        username,
+        name,
+        location,
+    });
+    return res.render("edit-profile");
+}
 export const see = (req, res) => res.send("See User");
-export const logout = (req, res) => res.send("Log Out");
+
