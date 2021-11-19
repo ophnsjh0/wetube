@@ -10,24 +10,22 @@ html(lang="ko")
                 ul  
                     li
                         a(href=`/`) Home
+                    li
+                        a(href=`/search`) Search
                     if loggedIn
                         li
                             a(href=`/videos/upload`) upload  
                         li 
-                            a(href=`/users/edit`) Edit
-                        li
-                            a(href=`/users/logout`) Logout
+                            a(href=`/users/edit`) Edit-Profile
                         li
                             a(href=`/join`) #{loggedInUser.name}의 Profile
+                        li
+                            a(href=`/users/logout`) Logout
                     else
                         li
                             a(href=`/login`) Login
                         li
-                            a(href=`/join`) Join                                      
-                    li
-                        a(href=`/search`) Search
-                    
-                     
+                            a(href=`/join`) Join                                                      
         main  
             block content
-    include partials/footer.pug
+    include ../partials/footer.pug

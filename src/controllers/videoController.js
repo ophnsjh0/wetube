@@ -3,7 +3,7 @@ import Video from "../models/Video";
 
 export const home = async(req, res) => {        
         const videos = await Video.find({}).sort({ creatAt : `desc`});
-        return res.render("home", { pageTitle: "Home", videos }); 
+        return res.render("video/home", { pageTitle: "Home", videos }); 
                     
 }
 
@@ -11,7 +11,7 @@ export const watch = async (req, res) => {
     const id = req.params.id;
     const video = await Video.findById(id);
     if(video){
-        return res.render("watch", { pageTitle: video.title, video});
+        return res.render("video/watch", { pageTitle: video.title, video});
     } 
     return res.render("404", { pageTitle: "Video Not Found.!"});    
 };
@@ -22,7 +22,7 @@ export const getEdit = async(req, res) => {
     if (!video){
         return res.status(404).render("404", { pageTitle: "Video Not Found.!"});
     }
-    return res.render("edit", { pageTitle:`Edit : ${video.title}`, video});     
+    return res.render("video/edit", { pageTitle:`Edit : ${video.title}`, video});     
 };
 
 export const postEdit = async (req, res) => {
@@ -31,7 +31,7 @@ export const postEdit = async (req, res) => {
     const video = await Video.findById(id);
     // const video = await Video.exists({ _id: id});
     if (!video){
-        return res.status(404).render("404", { pageTitle: "Video Not Found.!"});
+        return res.status(404).render("video/404", { pageTitle: "Video Not Found.!"});
     } else {
     await Video.findByIdAndUpdate(id,{
         title,
@@ -49,7 +49,7 @@ export const postEdit = async (req, res) => {
 };
 
 export const getUpload = (req, res) => {
-    return res.render("upload", {pageTitle: "UpLoad Video"});
+    return res.render("video/upload", {pageTitle: "UpLoad Video"});
 }
 
 export const postUpload = async(req, res) => {
@@ -76,7 +76,7 @@ export const postUpload = async(req, res) => {
     });
     return res.redirect(`/`);
    } catch(error) {
-        return res.status(400).render("upload", {pageTitle: "UpLoad Video", errorMessage: error.message,});   
+        return res.status(400).render("video/upload", {pageTitle: "UpLoad Video", errorMessage: error.message,});   
    };
    
 };
@@ -97,7 +97,7 @@ export const search = async(req, res) => {
             },
         });
     }
-    return res.render("search", {pageTitle: "Search", videos});
+    return res.render("video/search", {pageTitle: "Search", videos});
 }
 
 
