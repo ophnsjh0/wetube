@@ -175,7 +175,7 @@ export const getEdit = (req, res) => {
     return res.render("user/edit-profile", {pageTitle : "Edit-Profile"});
 }
 export const postEdit = async (req, res) => {
-    const { session: { user: {_id, username: sessionUsername, email: sessionEmail}  }, 
+    const { session: { user: {_id, username: sessionUsername, email: sessionEmail, avatarUrl}  }, 
     body: { email, username, name, location },
     file
 } = req;
@@ -195,8 +195,8 @@ export const postEdit = async (req, res) => {
                 errorMessage : " This Username is already taken.",});
         }
     };
-   
     const updateUser = await User.findByIdAndUpdate(_id, {
+        avatarUrl: file ? file.path : avatarUrl,
         email,
         username,
         name,
