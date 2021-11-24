@@ -53,6 +53,8 @@ export const getUpload = (req, res) => {
 }
 
 export const postUpload = async(req, res) => {
+    // const file = req.file;
+    const { path } = req.file;
     const { title, description, hashtags } = req.body;
     /* Video db저장 save 방식 
     const video = new Video({
@@ -70,6 +72,7 @@ export const postUpload = async(req, res) => {
    // Video db저장 create 방식 
    try {
     await Video.create({
+        videoPath : path,
         title: title,
         description: description,
         hashtags: Video.formatHashtags(hashtags),

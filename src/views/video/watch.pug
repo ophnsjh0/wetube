@@ -1,6 +1,7 @@
 extends ../template/base.pug
 
 block content 
+    video(src="/" + video.videoPath, controls, width="600", height="800")
     div
         p=video.description
         small=video.creatAt
