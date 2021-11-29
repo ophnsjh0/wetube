@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Video from "../models/Video";
 import bcrypt from "bcrypt";
 import fetch from "node-fetch";
 import session from "express-session";
@@ -242,4 +243,14 @@ export const postChangePassword = async (req, res) => {
     // req.session.user.password = user.password;
     return res.redirect("/");
 };
-export const see = (req, res) => res.send("See User");
+export const profile = async (req, res) => {
+    const {id} = req.params;
+    const user = await User.findById(id).populate("videos");
+    // console.log(user);
+    // const videos = await Video.find( {owner: user._id} )
+    if(!user){
+        // req.session.destroy();
+        return res.status(404).render("template/404", {pageTitle : "User Not Found~!"})   
+    }
+    return res.render("user/profile", { pageTitle : user.name, user /*videos*/ });
+};

@@ -1,0 +1,9 @@
+extend ../template/base.pug
+include ../mixins/video
+
+block content
+    ul 
+        each info in user.videos
+            +video(info)
+        else 
+            li Not Found  ~!! 

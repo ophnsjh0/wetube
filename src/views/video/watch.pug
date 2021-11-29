@@ -1,10 +1,17 @@
 extends ../template/base.pug
 
 block content 
-    video(src="/" + video.videoPath, controls, width="600", height="800")
+    video(src="/" + video.videoPath, controls, width="700", height="500")
     div
         p=video.description
         small=video.creatAt
-    a(href=`${video.id}/edit`) Edit Video &rarr;  
-    br 
-    a(href=`${video.id}/delete`) Delete Video &rarr;  
+        br
+        a(href=`/users/${video.owner._id}`)
+            small=`Creat By ${video.owner.name}`
+        br
+        br
+        if String(loggedInUser._id) == String(video.owner._id)
+            a(href=`${video.id}/edit`) Edit Video &rarr;  
+            br 
+            a(href=`${video.id}/delete`) Delete Video &rarr;  
+    
