@@ -2,8 +2,23 @@ extends ../template/base.pug
 include ../mixins/video
 
 block content 
-    ul 
+    div.video-grid 
         each info in videos
             +video(info)
+            +video(info)
+            +video(info)
+            +video(info)
+            +video(info)
+            +video(info)
+            +video(info)
+            +video(info)
+            +video(info)
+            +video(info)
+            +video(info)
+            +video(info)
+            +video(info)
+            +video(info)
+            +video(info)
+        
         else 
-            li Not Found  ~!! 
+            li.empty__message Not Found  ~!! 

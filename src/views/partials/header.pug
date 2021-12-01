@@ -1,0 +1,24 @@
+header
+    div
+        a(href="/").header__logo
+            i.fab.fa-youtube 
+        span We Tube
+    nav     
+        ul 
+            li
+                a(href=`/search`)
+                    i.fas.fa-search 
+            if loggedIn
+                li
+                    a(href=`/videos/upload`) upload
+                li
+                    a(href=`/users/${loggedInUser._id}`) MY Profile
+                li 
+                    a(href=`/users/edit`) Edit-Profile
+                li
+                    a(href=`/users/logout`) Logout
+            else
+                li
+                    a(href=`/login`) Login        
+                li
+                    a(href=`/join`).header__btn Join

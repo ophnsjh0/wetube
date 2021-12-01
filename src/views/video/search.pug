@@ -2,9 +2,9 @@ extends ../template/base.pug
 include ../mixins/video
 
 block content 
-     form(method="GET")
+    form(method="GET")
         input(placeholder="Search by title" type="text" name="keyword")
         input(type="submit" value="Search now")
-
+    div.video-grid
         each video in videos
             +video(video)
