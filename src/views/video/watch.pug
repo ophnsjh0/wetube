@@ -1,7 +1,20 @@
 extends ../template/base.pug
 
-block content 
-    video(src="/" + video.videoPath, controls, width="700", height="500")
+block content
+    div#videoContent 
+        video(src="/" + video.videoPath)
+        div
+            button#play Play 
+            button#mute Mute 
+            input(type="range", step="0.1", value="0.5", min="0", max="1")#volume
+        div 
+            span#currentTime 00:00
+            span   /  
+            span#totalTime 00:00
+        div
+            input(type="range", step="1", value="0", min="0")#timeLine
+        div 
+            button#fullScreenBtn Enter FullScreen
     div
         p=video.description
         small=video.creatAt
@@ -14,4 +27,7 @@ block content
             a(href=`${video.id}/edit`) Edit Video &rarr;  
             br 
             a(href=`${video.id}/delete`) Delete Video &rarr;  
+
+block script 
+    script(src="/static/js/videoPlayer.js")
     
