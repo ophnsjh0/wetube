@@ -2,8 +2,8 @@ extend ../template/base.pug
 include ../mixins/video
 
 block content
-    ul 
+    div.video__grid 
         each info in user.videos
             +video(info)
         else 
-            li Not Found  ~!! 
+            span.empty__message No videos found

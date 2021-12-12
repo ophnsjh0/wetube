@@ -1,9 +1,11 @@
 .empty__message {
+  margin-top: 50px;
   margin-bottom: 50px;
-  font-size: 18px;
+  font-size: 25px;
+  text-align: center;
 }
 
-.video-grid {
+.video__grid {
   margin-top: 20px;
   display: grid;
   gap: 50px;

@@ -3,10 +3,20 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .header__logo {
-    color: $red;
-    font-size: 34px;
+  .header__title {
+    display: flex;
+    align-items: center;
+    .header__logo {
+      color: $red;
+      font-size: 34px;
+    }
+    span {
+      text-align: center;
+      font-weight: 600;
+      margin-left: 20px;
+    }
   }
+
   ul {
     display: flex;
     justify-content: space-between;

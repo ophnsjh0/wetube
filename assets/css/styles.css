@@ -145,9 +145,18 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-header .header__logo {
+header .header__title {
+  display: flex;
+  align-items: center;
+}
+header .header__title .header__logo {
   color: #ff0000;
   font-size: 34px;
+}
+header .header__title span {
+  text-align: center;
+  font-weight: 600;
+  margin-left: 20px;
 }
 header ul {
   display: flex;
@@ -170,6 +179,9 @@ header .header__btn {
   border-radius: 5px;
 }
 
+.video-mixin {
+  color: #ffff;
+}
 .video-mixin .video-mixin__thumb {
   height: 140px;
   border-radius: 7px;
@@ -205,21 +217,69 @@ header .header__btn {
 }
 
 .empty__message {
+  margin-top: 50px;
   margin-bottom: 50px;
-  font-size: 18px;
+  font-size: 25px;
+  text-align: center;
 }
 
-.video-grid {
+.video__grid {
   margin-top: 20px;
   display: grid;
   gap: 50px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+form {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+input {
+  all: unset;
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: black;
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: white;
+  width: 90%;
+}
+input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+form [type=submit] {
+  background-color: #ff0000;
+  text-align: center;
+  cursor: pointer;
+  padding: 12px 20px;
+  font-weight: 600;
+}
+
 .home__videos {
   display: grid;
   gap: 50px;
   grid-template-columns: repeat(4, 1fr);
+}
+
+.search__form {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.search__form button {
+  all: unset;
+}
+.search__form button {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0);
+  text-align: center;
+  font-size: 18px;
+  right: 15px;
+  cursor: pointer;
 }
 
 a {
