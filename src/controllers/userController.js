@@ -245,12 +245,19 @@ export const postChangePassword = async (req, res) => {
 };
 export const profile = async (req, res) => {
     const {id} = req.params;
-    const user = await User.findById(id).populate("videos");
+    const user = await User.findById(id).populate({
+        path: "videos",
+        populate: {
+            path: "owner",
+            model: "User",
+        }
+    });
     // console.log(user);
-    // const videos = await Video.find( {owner: user._id} )
+    // const videos = await Video.find( {owner: user._id} ).populate("owner");
     if(!user){
         // req.session.destroy();
         return res.status(404).render("template/404", {pageTitle : "User Not Found~!"})   
     }
-    return res.render("user/profile", { pageTitle : user.name, user /*videos*/ });
+    console.log(user);
+    return res.render("user/profile", { pageTitle : user.name, user, /*videos*/ });
 };

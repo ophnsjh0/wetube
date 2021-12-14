@@ -11,3 +11,18 @@
   gap: 50px;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+
+.auth-switch {
+  text-align: center;
+  margin-top: 30px;
+  a {
+    text-decoration: underline;
+    color: rgba($color: #ffff, $alpha: 0.7);
+  }
+}
+
+.avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 100px;
+}

@@ -174,9 +174,14 @@ header ul i {
 }
 header .header__btn {
   background-color: #ffffff;
-  color: black;
+  color: #151416;
   padding: 5px 10px;
   border-radius: 5px;
+}
+header .header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
 .video-mixin {
@@ -230,12 +235,30 @@ header .header__btn {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.auth-switch {
+  text-align: center;
+  margin-top: 30px;
+}
+.auth-switch a {
+  text-decoration: underline;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 100px;
+}
+
 form {
   max-width: 420px;
   margin: 0 auto;
+  padding: 28px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-input {
+form input {
   all: unset;
   padding: 15px 20px;
   border-radius: 5px;
@@ -246,22 +269,78 @@ input {
   color: white;
   width: 90%;
 }
-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+form input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
-form [type=submit] {
-  background-color: #ff0000;
+input[type=submit],
+.social__btn {
+  border-radius: 5px;
+  background-color: white;
+  color: rgba(255, 0, 0, 0.9);
   text-align: center;
   cursor: pointer;
   padding: 12px 20px;
   font-weight: 600;
+  display: block;
+}
+
+.social-login {
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  padding-top: 50px;
+  margin-top: 30px;
+}
+.social-login .social__btn--github {
+  background-color: transparent;
+  color: azure;
+}
+
+.edit-profile__form label {
+  font-size: 13px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 15px 20px;
+}
+.edit-profile__form img {
+  margin-left: 30px;
+  border-radius: 30px;
+  width: 80px;
+  height: 80px;
+}
+
+.edit-profile__password {
+  margin-top: 50px;
+  text-align: center;
+}
+.edit-profile__password a {
+  text-decoration: underline;
 }
 
 .home__videos {
   display: grid;
   gap: 50px;
   grid-template-columns: repeat(4, 1fr);
+}
+
+.profile__data {
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 70px;
+}
+.profile__data img {
+  margin-bottom: 15px;
+}
+.profile__data h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.profile__data h4 {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .search__form {
@@ -275,10 +354,10 @@ form [type=submit] {
 }
 .search__form button {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: black;
   text-align: center;
   font-size: 18px;
-  right: 15px;
+  right: 40px;
   cursor: pointer;
 }
 
@@ -289,7 +368,7 @@ a {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: black;
+  background-color: #151416;
   color: #ffffff;
 }
 
