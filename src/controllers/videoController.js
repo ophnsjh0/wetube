@@ -26,6 +26,7 @@ export const getEdit = async(req, res) => {
         return res.status(404).render("404", { pageTitle: "Video Not Found.!"});
     }
     if (String(video.owner) !== String(_id)){
+        req.flash("error", "Not authorized");
         return res.status(403).redirect("/");
     }
     return res.render("video/edit", { pageTitle:`Edit : ${video.title}`, video});     
@@ -41,6 +42,7 @@ export const postEdit = async (req, res) => {
         return res.status(404).render("template/404", { pageTitle: "Video Not Found.!"});
     } 
     if (String(video.owner) !== String(_id)){
+        req.flash("error", "Not authorized");
         return res.status(403).redirect("/");
     } 
     await Video.findByIdAndUpdate(id,{
@@ -54,7 +56,8 @@ export const postEdit = async (req, res) => {
     //     video.description = description;
     //     video.hashtags = hashtags.split(',').map((word) => (word.startsWith("#") ? word :`#${word}`));
     //     await video.save()
-    // }  
+    // }
+    req.flash("info", "Success Edit");  
     return res.redirect(`/videos/${id}`);
 };
 
@@ -92,6 +95,7 @@ export const postUpload = async(req, res) => {
     const user = await User.findById(_id);
     user.videos.push(newVideo._id);
     user.save();
+    req.flash("info", "Success Video Upload");
     return res.redirect(`/`);
    } catch(error) {
         return res.status(400).render("video/upload", {pageTitle: "UpLoad Video", errorMessage: error.message,});   
@@ -107,9 +111,11 @@ export const getDelete = async(req, res) => {
         return res.status(404).render("template/404", { pageTitle: "Video Not Found.!"});
     }
     if (String(video.owner) !== String(_id)){
+        req.flash("error", "Not authorized");
         return res.status(403).redirect("/");
     } 
     await Video.findByIdAndDelete(id);
+    req.flash("info", "Success Video Delete");
     return res.redirect(`/`);
 };
 
@@ -125,7 +131,17 @@ export const search = async(req, res) => {
     }
     console.log(videos);
     return res.render("video/search", {pageTitle: "Search", videos});
-}
+};
 
+export const registerView = async(req, res) => {
+    const { id } = req.params;
+    const video = await Video.findById(id);
+    if(!video){
+        res.res.sendStatus(404);
+    }
+    video.meta.views = video.meta.views + 1;
+    await video.save();
+    return res.sendStatus(200);
+};
 
 

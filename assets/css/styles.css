@@ -295,6 +295,139 @@ input[type=submit],
   color: azure;
 }
 
+#videoContainer {
+  border-radius: 5px;
+  width: 100%;
+  position: relative;
+}
+#videoContainer video {
+  width: 100%;
+}
+#videoContainer .videoControls {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  align-items: center;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 10px;
+  width: 95%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr auto;
+  gap: 10px;
+  justify-content: space-between;
+  background-color: aliceblue;
+  color: tomato;
+  padding: 10px;
+  left: 0;
+  box-sizing: border-box;
+}
+#videoContainer .videoControls.showing {
+  opacity: 0.9;
+}
+#videoContainer .videoControls .videoControls__play {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#videoContainer .videoControls .videoControls__play .videoControls__playBtn {
+  margin: 0px 15px;
+}
+#videoContainer .videoControls .videoControls__play .videoControls__time {
+  font-size: 12px;
+}
+#videoContainer .videoControls .videoControls__volume {
+  display: flex;
+  align-items: center;
+}
+#videoContainer .videoControls .videoControls__volume span {
+  margin-left: 10px;
+}
+#videoContainer .videoControls .videoControls__volume span i {
+  font-size: 20px;
+}
+
+.videoDescription {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  background-color: aliceblue;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 8px 16px -8px white, 0 -6px 16px -6px rgba(255, 255, 255, 0.9);
+}
+.videoDescription .videoDescription__hashtag {
+  font-size: 12px;
+  color: rgba(50, 136, 255, 0.9);
+  margin-bottom: 10px;
+}
+.videoDescription .videoDescription__deccription {
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.videoDescription .videoDescription_creatAt {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+}
+.videoDescription hr {
+  border-top: 3px double #bbb;
+}
+.videoDescription .videoDescription__creater {
+  display: flex;
+  align-items: center;
+}
+.videoDescription .videoDescription__creater .videoDescription__creater__avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.videoDescription .videoDescription__creater .videoDescription__creater__info {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.videoDescription .videoDescription__creater .videoDescription__creater__info .videoDescription__creater__name {
+  font-weight: 500;
+  font-size: 15px;
+  color: black;
+  margin-bottom: 5px;
+}
+.videoDescription .videoDescription__creater .videoDescription__creater__info .videoDescription__creater__email {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.videoEdit {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+.videoEdit .videoEdit__Edit {
+  font-size: 15px;
+  background-color: #3288ff;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: aliceblue;
+  font-weight: 700;
+  box-shadow: 0 8px 16px -8px white, 0 -6px 16px -6px rgba(255, 255, 255, 0.9);
+}
+.videoEdit .videoEdit__delete {
+  margin-left: 10px;
+  font-size: 15px;
+  background-color: tomato;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: aliceblue;
+  font-weight: 700;
+  box-shadow: 0 8px 16px -8px white, 0 -6px 16px -6px rgba(255, 255, 255, 0.9);
+}
+
 .edit-profile__form label {
   font-size: 13px;
   margin-bottom: 15px;
@@ -377,4 +510,37 @@ main {
   width: 100%;
   margin: 0 auto;
   margin-top: 70px;
+}
+
+@keyframes goAway {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+.message {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 300px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-align: center;
+  animation: goAway 0.5s ease-in-out forwards;
+  animation-delay: 5s;
+  box-shadow: 0 8px 16px -8px white, 0 -6px 16px -6px rgba(255, 255, 255, 0.9);
+}
+.message.info {
+  background-color: #fdfd13;
+  color: #085df1;
+}
+.message.error {
+  background-color: tomato;
+  color: white;
 }

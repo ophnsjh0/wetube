@@ -1,10 +1,6 @@
 import User from "../models/User";
-import Video from "../models/Video";
 import bcrypt from "bcrypt";
 import fetch from "node-fetch";
-import session from "express-session";
-
-
 
 export const getJoin = (req, res) => res.render("user/join", { pageTitle : "Join" });
 export const postJoin = async(req, res) => {
@@ -39,6 +35,7 @@ export const postJoin = async(req, res) => {
             socialOnly: false,
             location,
         });
+        req.flash("info", "Success Create");
         return res.redirect(`/login`);
     } catch (error){
         return res.status(400).render("user/join", {pageTitle: "Join", 
@@ -65,6 +62,7 @@ export const postLogin = async (req, res) => {
     };
     req.session.loggedIn = true;
     req.session.user = user;
+    req.flash("info", "Success Login");
     return res.redirect(`/`);
 };
 
@@ -161,8 +159,10 @@ export const finishGihubLogin = async(req, res) => {
        } 
        req.session.loggedIn = true;
        req.session.user = user;
+       req.flash("info", "Success Login github");
        return res.redirect(`/`); 
     } else {
+        req.flash("error", "Not authorized");
         return res.redirect("/login");
     }
 };
@@ -212,11 +212,13 @@ export const postEdit = async (req, res) => {
     //     username,
     //     location,
     // };
-    return res.redirect("/users/edit");
+    req.flash("info", "Success UserEdit");
+    return res.redirect(`/users/${_id}`);
 };
 
 export const getChangePassword = (req, res) => {
     if (req.session.user.socialOnly === true) {
+        req.flash("info", "SocialLogin Not password Change");
         return res.redirect("/");
     }
     return res.render("user/changePassword", {pageTitle : "Change-Password" });
@@ -241,6 +243,7 @@ export const postChangePassword = async (req, res) => {
     // console.log("new hash", user.password);
     // session 동기화
     // req.session.user.password = user.password;
+    req.flash("info", "Success Password change");
     return res.redirect("/");
 };
 export const profile = async (req, res) => {

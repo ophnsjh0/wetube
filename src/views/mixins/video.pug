@@ -3,8 +3,10 @@ mixin video(video)
         div.video-mixin__thumb 
         div.video-mixin__data
             if !video.owner.avatarUrl
-                img.video-mixin__avartar(src="/uploads/img/penguin.jpg")   
-            else
+                img.video-mixin__avartar(src="/uploads/img/notimage.png")   
+            else if video.owner.socialOnly == true
+                img.video-mixin__avartar(src=video.owner.avatarUrl)
+            else 
                 img.video-mixin__avartar(src="/" + video.owner.avatarUrl)
             span.video-mixin__title=video.description
         div.video-mixin__owner
