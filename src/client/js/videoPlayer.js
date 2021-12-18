@@ -11,6 +11,7 @@ const fullScreenBtn = document.getElementById("fullScreen");
 const fullScreenIcon = fullScreenBtn.querySelector("i");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
+const textarea = document.querySelector('textarea');
 
 // console.log(videoContainer.dataset);
 
@@ -103,7 +104,7 @@ const handleMouseLeave = () => {
 };
 
 const handleKeyPress = (event) => {
-    switch (event.keyCode) {
+    switch (event.target !== textarea && event.keyCode) {
       case 32:
         handlePlayClick();
         break;

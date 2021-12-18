@@ -5,44 +5,62 @@ block content
         if String(loggedInUser._id) == String(video.owner._id)
             a.videoEdit__Edit(href=`${video.id}/edit`) Edit Video   
             br 
-            a.videoEdit__delete(href=`${video.id}/delete`) Delete Video 
-    div#videoContainer(data-id=video._id)
-        video(src="/" + video.videoPath)
-        div#videoControls.videoControls
-            div.videoControls__play
-                span#play.videoControls__playBtn
-                    i.fas.fa-play
-                div.videoControls__time
-                    span#currenTime 00:00
-                    span  / 
-                    span#totalTime 00:00
-            input(type="range",step="1", value="0", min="0")#timeline.videoControls__timeline
-            div.videoControls__volume
-                input(type="range",step="0.1", value=0.5, min="0", max="1")#volume
-                span#mute
-                    i.fas.fa-volume-up
-            div
-                span#fullScreen
-                    i.fas.fa-expand
-    div.videoDescription
-        span.videoDescription__hashtag=video.hashtags
-        span.videoDescription__deccription=video.description
-        span.videoDescription_creatAt=video.creatAt
-            hr
-        div
-            a(href=`/users/${video.owner._id}`).videoDescription__creater
-                span.videoDescription__creater__avatar 
-                    if !loggedInUser.avatarUrl
-                        img(src="/uploads/img/notimage.png")
-                    else if loggedInUser.socialOnly == true
-                        img(src=loggedInUser.avatarUrl)
-                    else
-                        img(src="/" + loggedInUser.avatarUrl)
-                div.videoDescription__creater__info
-                    span.videoDescription__creater__name=`Creat By ${video.owner.name}`
-                    span.videoDescription__creater__email=video.owner.email
-     
+            a.videoEdit__delete(href=`${video.id}/delete`) Delete Video
+    div.watch__page
+        div.watch__page-view
+            div#videoContainer(data-id=video._id)
+                video(src="/" + video.videoPath)
+                div#videoControls.videoControls
+                    div.videoControls__play
+                        span#play.videoControls__playBtn
+                            i.fas.fa-play
+                        div.videoControls__time
+                            span#currenTime 00:00
+                            span  / 
+                            span#totalTime 00:00
+                    input(type="range",step="1", value="0", min="0")#timeline.videoControls__timeline
+                    div.videoControls__volume
+                        input(type="range",step="0.1", value=0.5, min="0", max="1")#volume
+                        span#mute
+                            i.fas.fa-volume-up
+                    div
+                        span#fullScreen
+                            i.fas.fa-expand
+            div.videoDescription
+                span.videoDescription__hashtag=video.hashtags
+                span.videoDescription__deccription=video.description
+                span.videoDescription_creatAt=video.creatAt
+                    hr
+                div
+                    a(href=`/users/${video.owner._id}`).videoDescription__creater
+                        span.videoDescription__creater__avatar 
+                            if !loggedInUser.avatarUrl
+                                img(src="/uploads/img/notimage.png")
+                            else if loggedInUser.socialOnly == true
+                                img(src=loggedInUser.avatarUrl)
+                            else
+                                img(src="/" + loggedInUser.avatarUrl)
+                        div.videoDescription__creater__info
+                            span.videoDescription__creater__name=`Creat By ${video.owner.name}`
+                            span.videoDescription__creater__email=video.owner.email
+        div.watch__page-comment
+            div.video__comments
+                ul
+                    each comment in video.comments.reverse()
+                        li.video__comment(data-id=comment.id)
+                            i.fas.fa-comment
+                            span #{comment.text}
+                            if String(comment.owner._id) === String(loggedInUser._id)
+                                span.deleteBtn ❌
+                            //- span#comment-owner.video__comment-owner #{video.owner.name}
+            if loggedIn
+                div.video__add-comments
+                    form.video__comment-form#commentForm
+                        textarea(cols="30", rows="10", placeholder="Write a nice comment..")
+                        button Add Comment   
 
 block script 
     script(src="/static/js/videoPlayer.js")
+    //- if loggedIn
+    script(src="/static/js/commentSection.js")
     

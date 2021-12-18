@@ -494,6 +494,51 @@ input[type=submit],
   cursor: pointer;
 }
 
+.preview {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  border-radius: 80px;
+  max-width: 360px;
+  margin-bottom: 30px;
+}
+
+.watch__page {
+  display: flex;
+  margin: 0 auto;
+}
+.watch__page .watch__page-view {
+  margin-right: 20px;
+}
+.watch__page .watch__page-comment {
+  background-color: aliceblue;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 720px;
+  box-shadow: 0 8px 16px -8px white, 0 -6px 16px -6px rgba(255, 255, 255, 0.9);
+}
+.watch__page .video__comments {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.watch__page .video__comments .video__comment {
+  padding: 10px;
+  border-radius: 9999px;
+  background-color: white;
+  color: black;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.watch__page .video__comments .video__comment .deleteBtn {
+  cursor: pointer;
+}
+
 a {
   color: inherit;
   text-decoration: none;

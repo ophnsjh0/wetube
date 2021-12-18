@@ -21,6 +21,7 @@ app.set("view engine", "pug");
 app.set("views", process.cwd() + '/src/views')
 app.use(logger);
 app.use(express.urlencoded({ extended: true })); //URL 인코더 미들웨어 
+app.use(express.json());
 app.use(session({
     secret: process.env.COOKIE_SECRET,
     resave: false,
