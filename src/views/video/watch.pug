@@ -34,9 +34,9 @@ block content
                 div
                     a(href=`/users/${video.owner._id}`).videoDescription__creater
                         span.videoDescription__creater__avatar 
-                            if !loggedInUser.avatarUrl
+                            if !video.owner.avatarUrl
                                 img(src="/uploads/img/notimage.png")
-                            else if loggedInUser.socialOnly == true
+                            else if video.owner.socialOnly == true
                                 img(src=video.owner.avatarUrl crossorigin)
                             else
                                 img(src="/" + video.owner.avatarUrl)
