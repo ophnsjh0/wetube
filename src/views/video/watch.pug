@@ -37,7 +37,7 @@ block content
                             if !loggedInUser.avatarUrl
                                 img(src="/uploads/img/notimage.png")
                             else if loggedInUser.socialOnly == true
-                                img(src=loggedInUser.avatarUrl)
+                                img(src=loggedInUser.avatarUrl crossorigin)
                             else
                                 img(src="/" + loggedInUser.avatarUrl)
                         div.videoDescription__creater__info

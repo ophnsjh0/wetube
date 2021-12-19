@@ -21,7 +21,7 @@ header
                             img.header__avatar(src="/uploads/img/notimage.png")
                         else if loggedInUser.socialOnly == true
                             if loggedInUser.avatarUrl
-                                img.header__avatar(src=loggedInUser.avatarUrl)
+                                img.header__avatar(src=loggedInUser.avatarUrl crossorigin)
                             else 
                                 img.header__avatar(src="/" + loggedInUser.avatarUrl)
                         else

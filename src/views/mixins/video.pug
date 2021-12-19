@@ -1,11 +1,11 @@
 mixin video(video) 
     a(href=`/videos/${video.id}`).video-mixin
-        div.video-mixin__thumb
+        div.video-mixin__thumb(style=`background-image:url(${"/" + video.thumbUrl})`)
         div.video-mixin__data
             if !video.owner.avatarUrl
                 img.video-mixin__avartar(src="/uploads/img/notimage.png")   
             else if video.owner.socialOnly == true
-                img.video-mixin__avartar(src=video.owner.avatarUrl)
+                img.video-mixin__avartar(src=video.owner.avatarUrl crossorigin)
             else 
                 img.video-mixin__avartar(src="/" + video.owner.avatarUrl)
             span.video-mixin__title=video.description
