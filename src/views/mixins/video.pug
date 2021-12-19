@@ -3,7 +3,7 @@ mixin video(video)
         div.video-mixin__thumb(style=`background-image:url(${"/" + video.thumbUrl})`)
         div.video-mixin__data
             if !video.owner.avatarUrl
-                img.video-mixin__avartar(src="/uploads/img/notimage.png")   
+                img.video-mixin__avartar(src="/src/img/notimage.png")   
             else if video.owner.socialOnly == true
                 img.video-mixin__avartar(src=video.owner.avatarUrl crossorigin)
             else 
