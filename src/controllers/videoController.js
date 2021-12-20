@@ -90,7 +90,7 @@ export const postUpload = async(req, res) => {
    try {
     const newVideo = await Video.create({
         videoPath : isHeroku ? video[0].location : video[0].path,
-        thumbUrl: isHeroku ? thumb[0].location : thumb[0].path,/*.replace(/[\\]/g, "/")*/
+        thumbUrl: isHeroku ? thumb[0].location : thumb[0].path.replace(/[\\]/g, "/"),
         title: title,
         description: description,
         owner: _id,

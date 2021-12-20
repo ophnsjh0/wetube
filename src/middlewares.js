@@ -9,21 +9,21 @@ const s3 = new aws.S3({
     }
   });
   
-  const isHeroku = process.env.NODE_ENV === "production";
+const isHeroku = process.env.NODE_ENV === "production";
   
   
-  const s3ImageUploader = multerS3({
+const s3ImageUploader = multerS3({
     s3: s3,
     bucket: "wetube-bang/images",
     acl: "public-read",
-    contentType: multerS3.AUTO_CONTENT_TYPE,
+    // contentType: multerS3.AUTO_CONTENT_TYPE,
   });
   
-  const s3VideoUploader = multerS3({
+const s3VideoUploader = multerS3({
     s3: s3,
     bucket: "wetube-bang/videos",
     acl: "public-read",
-    contentType: multerS3.AUTO_CONTENT_TYPE,
+    // contentType: multerS3.AUTO_CONTENT_TYPE,
   });
 
 
