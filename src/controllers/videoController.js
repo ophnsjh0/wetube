@@ -69,6 +69,8 @@ export const getUpload = (req, res) => {
 }
 
 export const postUpload = async(req, res) => {
+    res.header("Cross-Origin-Embedder-Policy", "require-corp");
+    res.header("Cross-Origin-Opener-Policy", "same-origin");
     const {user: {_id}} = req.session;
     // const file = req.file;
     const { video, thumb } = req.files;
