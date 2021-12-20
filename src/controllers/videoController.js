@@ -86,11 +86,11 @@ export const postUpload = async(req, res) => {
     await video.save();
     */
    // Video db저장 create 방식 
-   const isHeroku = process.env.NODE_ENV === "production";
+  //  const isHeroku = process.env.NODE_ENV === "production";
    try {
     const newVideo = await Video.create({
-        videoPath : isHeroku ? video[0].location : video[0].path,
-        thumbUrl: isHeroku ? thumb[0].location : thumb[0].path.replace(/[\\]/g, "/"),
+        videoPath : /*isHeroku ?*/ video[0].location /*: video[0].path*/,
+        thumbUrl: /*isHeroku ?*/ thumb[0].location /*: thumb[0].path.replace(/[\\]/g, "/")*/,
         title: title,
         description: description,
         owner: _id,

@@ -180,7 +180,7 @@ export const postEdit = async (req, res) => {
     body: { email, username, name, location },
     file
     } = req;
-    const isHeroku = process.env.NODE_ENV === "production";
+    // const isHeroku = process.env.NODE_ENV === "production";
     const pageTitle = "Edit-Profile";
     if(sessionEmail !== email) {
         const existEmail = await User.findOne({email});
@@ -197,7 +197,7 @@ export const postEdit = async (req, res) => {
         }
     };
     const updateUser = await User.findByIdAndUpdate(_id, {
-        avatarUrl: file ? (isHeroku ? file.location : file.path) : avatarUrl,
+        avatarUrl: file ? /*(isHeroku ? */file.location /*: file.path)*/ : avatarUrl,
         email,
         username,
         name,
