@@ -9,7 +9,7 @@ block content
     div.watch__page
         div.watch__page-view
             div#videoContainer(data-id=video._id)
-                video(src="/" + video.videoPath)
+                video(src=video.videoPath)
                 div#videoControls.videoControls
                     div.videoControls__play
                         span#play.videoControls__playBtn
@@ -39,7 +39,7 @@ block content
                             else if video.owner.socialOnly == true
                                 img(src=video.owner.avatarUrl crossorigin)
                             else
-                                img(src="/" + video.owner.avatarUrl)
+                                img(src=video.owner.avatarUrl)
                         div.videoDescription__creater__info
                             span.videoDescription__creater__name=`Creat By ${video.owner.name}`
                             span.videoDescription__creater__email=video.owner.email

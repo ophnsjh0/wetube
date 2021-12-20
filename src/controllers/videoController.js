@@ -63,6 +63,8 @@ export const postEdit = async (req, res) => {
 };
 
 export const getUpload = (req, res) => {
+    res.header("Cross-Origin-Embedder-Policy", "require-corp");
+    res.header("Cross-Origin-Opener-Policy", "same-origin");
     return res.render("video/upload", {pageTitle: "UpLoad Video"});
 }
 
@@ -88,8 +90,8 @@ export const postUpload = async(req, res) => {
    // Video db저장 create 방식 
    try {
     const newVideo = await Video.create({
-        videoPath : video[0].path,
-        thumbUrl: thumb[0].path.replace(/[\\]/g, "/"),
+        videoPath : video[0].location,
+        thumbUrl: thumb[0].location,/*.replace(/[\\]/g, "/")*/
         title: title,
         description: description,
         owner: _id,
