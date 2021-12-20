@@ -35,7 +35,7 @@ block content
                     a(href=`/users/${video.owner._id}`).videoDescription__creater
                         span.videoDescription__creater__avatar 
                             if !video.owner.avatarUrl
-                                img(src="/uploads/img/notimage.png")
+                                img(src="https://wetube-shinbi.s3.ap-northeast-2.amazonaws.com/img/notimage.png")
                             else if video.owner.socialOnly == true
                                 img(src=video.owner.avatarUrl)
                             else

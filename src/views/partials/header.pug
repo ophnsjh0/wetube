@@ -18,7 +18,7 @@ header
                 li
                     a(href=`/users/${loggedInUser._id}`)
                         if !loggedInUser.avatarUrl
-                            img.header__avatar(src="/uploads/img/notimage.png")
+                            img.header__avatar(src="https://wetube-shinbi.s3.ap-northeast-2.amazonaws.com/img/notimage.png")
                         else if loggedInUser.socialOnly == true
                             img.header__avatar(src=loggedInUser.avatarUrl)
                         else 
