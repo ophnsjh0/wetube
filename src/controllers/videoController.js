@@ -63,9 +63,9 @@ export const postEdit = async (req, res) => {
 };
 
 export const getUpload = (req, res) => {
-    res.header("Cross-Origin-Embedder-Policy", "require-corp");
-    res.header("Cross-Origin-Opener-Policy", "same-origin");
-    return res.render("video/upload", {pageTitle: "UpLoad Video"});
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
+  res.header("Cross-Origin-Opener-Policy", "same-origin");
+  return res.render("video/upload", {pageTitle: "UpLoad Video"});
 }
 
 export const postUpload = async(req, res) => {
