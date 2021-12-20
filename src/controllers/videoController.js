@@ -63,14 +63,10 @@ export const postEdit = async (req, res) => {
 };
 
 export const getUpload = (req, res) => {
-    res.header("Cross-Origin-Embedder-Policy", "require-corp");
-    res.header("Cross-Origin-Opener-Policy", "same-origin");
     return res.render("video/upload", {pageTitle: "UpLoad Video"});
 }
 
 export const postUpload = async(req, res) => {
-    res.header("Cross-Origin-Embedder-Policy", "require-corp");
-    res.header("Cross-Origin-Opener-Policy", "same-origin");
     const {user: {_id}} = req.session;
     // const file = req.file;
     const { video, thumb } = req.files;
@@ -90,10 +86,11 @@ export const postUpload = async(req, res) => {
     await video.save();
     */
    // Video db저장 create 방식 
+   const isHeroku = process.env.NODE_ENV === "production";
    try {
     const newVideo = await Video.create({
-        videoPath : video[0].location,
-        thumbUrl: thumb[0].location,/*.replace(/[\\]/g, "/")*/
+        videoPath : isHeroku ? video[0].location : video[0].path,
+        thumbUrl: isHeroku ? thumb[0].location : thumb[0].path,/*.replace(/[\\]/g, "/")*/
         title: title,
         description: description,
         owner: _id,
