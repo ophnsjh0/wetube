@@ -37,7 +37,7 @@ block content
                             if !video.owner.avatarUrl
                                 img(src="/uploads/img/notimage.png")
                             else if video.owner.socialOnly == true
-                                img(src=video.owner.avatarUrl crossorigin)
+                                img(src=video.owner.avatarUrl)
                             else
                                 img(src=video.owner.avatarUrl)
                         div.videoDescription__creater__info

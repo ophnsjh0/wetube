@@ -6,7 +6,7 @@ block content
         if !loggedInUser.avatarUrl
             img.avatar(src="/uploads/img/notimage.png")
         else if loggedInUser.socialOnly == true
-            img.avatar(src=loggedInUser.avatarUrl crossorigin)
+            img.avatar(src=loggedInUser.avatarUrl)
         else
             img.avatar(src=loggedInUser.avatarUrl)
         h3=user.name
