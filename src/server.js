@@ -57,7 +57,7 @@ app.use(session({
 app.use(flash());
 app.use(localsMiddleware);
 app.use("/uploads", express.static("uploads"));
-app.use("/static", express.static("assets"), express.static("node_modules/@ffmpeg/core/dist"));
+app.use("/static", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);
